@@ -24,7 +24,7 @@ char keys[JmlBaris][ JmlKolom] = {
 //hubungkan pin kolom keypad dengan pin arduino
   byte PinKolom[JmlKolom] = { 4, 5, 6 };
 //buat obyek keypad librari
-Keypad syahwil = Keypad( makeKeymap(keys), PinBaris,   PinKolom, JmlBaris, JmlKolom ); 
+Keypad lock = Keypad( makeKeymap(keys), PinBaris,   PinKolom, JmlBaris, JmlKolom ); 
 void setup() { 
   lcd.begin(16, 2); //memulai LCD
   lcd.setCursor(0,0); //set tempat kursor/teks
@@ -33,7 +33,7 @@ void setup() {
   lcd.print("...by TT3ABCD...");
   delay(500);
   lcd.clear();
-  syahwil.addEventListener(keypadEvent);
+  lock.addEventListener(keypadEvent);
 }
 void loop() {
   pinMode(led, OUTPUT);
@@ -47,10 +47,10 @@ void loop() {
      lcd.display();
      delay(250);
 }
-  syahwil.getKey(); //membaca keypad
+  lock.getKey(); //membaca keypad
 }
 void keypadEvent(KeypadEvent eKey){ 
-  switch (syahwil.getState()){
+  switch (lock.getState()){
     case PRESSED: //saat ditekan
       if (a == 0){ 
          lcd.clear();
